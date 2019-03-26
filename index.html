@@ -7,8 +7,8 @@
     <title>Document</title>
     <style>
         .dot {
-            height: 25px;
-            width: 25px;
+            height: 15px;
+            width: 15px;
             background-color: #bbb;
             border-radius: 50%;
             display: inline-block;
@@ -20,9 +20,9 @@
 </head>
 <body>
 
-    <span id="progressDot1" class="dot"></span><br>
-    <span id="progressDot2" class="dot"></span><br>
-    <span id="progressDot3" class="dot"></span><br>
+    <span id="progressDot1" class="dot"></span> <div id="progressDot1Message"></div> <br>
+    <span id="progressDot2" class="dot"></span> <div id="progressDot2Message"></div> <br>
+    <span id="progressDot3" class="dot"></span> <div id="progressDot3Message"></div> <br>
     
     <button id="start">Start</button>
 
@@ -47,6 +47,8 @@
             var dot = document.querySelector(selector);
                 dot.classList.add('dot-done');
             }
+            var dotMessage = document.querySelector(selector+'Message');
+                dotMessage.innerHTML = data.message;
         }
 
         var button = document.querySelector('#start');
