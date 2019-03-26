@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .dot {
+            height: 25px;
+            width: 25px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .dot-done{
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <span id="progressDot1" class="dot"></span><br>
+    <span id="progressDot2" class="dot"></span><br>
+    <span id="progressDot3" class="dot"></span><br>
+    
+    <button id="start">Start</button>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io.connect('http://localhost:8888');
+
+        socket.on('process1', function (data) {
+            changeToDone(data, '#progressDot1');
+        });
+
+        socket.on('process2', function (data) {
+            changeToDone(data, '#progressDot2');
+        });
+
+        socket.on('process3', function (data) {
+            changeToDone(data, '#progressDot3');
+        });
+
+        function changeToDone(data, selector) {
+            if( data.status == 1){
+            var dot = document.querySelector(selector);
+                dot.classList.add('dot-done');
+            }
+        }
+
+        var button = document.querySelector('#start');
+        button.addEventListener('click', function () {
+            var url = 'http://localhost:8888/event';
+            fetch(url)
+        });
+
+    </script>
+</body>
+</html>
