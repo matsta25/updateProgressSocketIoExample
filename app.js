@@ -2,8 +2,11 @@ var app = require('express')();
 var server = require('http').Server(app); 
 var io = require('socket.io')(server); 
 
-server.listen(8888, function() {
-   console.log("Server listening on localhost:888")
+
+const port = 3000;
+
+server.listen(port, function() {
+   console.log("Server listening on localhost:" + port)
 }); 
 
 app.get('/', function (req, res) {

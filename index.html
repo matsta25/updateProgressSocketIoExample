@@ -28,7 +28,8 @@
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        var socket = io.connect('http://localhost:8888');
+        var baseUrl = 'http://localhost'; 
+        var socket = io.connect(baseUrl);
 
         socket.on('process1', function (data) {
             changeToDone(data, '#progressDot1');
@@ -53,8 +54,7 @@
 
         var button = document.querySelector('#start');
         button.addEventListener('click', function () {
-            var url = 'http://localhost:8888/event';
-            fetch(url)
+            fetch( baseUrl + '/event')
         });
 
     </script>
